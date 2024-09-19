@@ -143,7 +143,49 @@ let startX, startY, currentX = 0, currentY = 0;
 zoomableImage.addEventListener('dragstart', function(e) {
     e.preventDefault();
 });
+////////////////////////////
 
+ // *** Manejo para pantallas táctiles ***
+ zoomContainer.addEventListener('touchstart', function (e) {
+    e.preventDefault();
+    const touch = e.touches[0]; // Primer toque
+    isDragging = true;
+    startX = touch.clientX - currentX;
+    startY = touch.clientY - currentY;
+    zoomContainer.classList.add('grabbing');
+});
+
+window.addEventListener('touchend', function () {
+    isDragging = false;
+    zoomContainer.classList.remove('grabbing');
+});
+
+window.addEventListener('touchmove', function (e) {
+    if (!isDragging) return;
+    e.preventDefault();
+    
+    const touch = e.touches[0]; // Primer toque
+    const containerRect = zoomContainer.getBoundingClientRect();
+    const imageRect = zoomableImage.getBoundingClientRect();
+    
+    let nextX = touch.clientX - startX;
+    let nextY = touch.clientY - startY;
+
+    const maxX = (imageRect.width - containerRect.width) / 2;
+    const maxY = (imageRect.height - containerRect.height) / 2;
+
+    currentX = Math.max(-maxX, Math.min(nextX, maxX));
+    currentY = Math.max(-maxY, Math.min(nextY, maxY));
+
+    // Aplica la traducción manteniendo el zoom
+    zoomableImage.style.transform = `translate(${currentX}px, ${currentY}px) scale(2)`;
+    imageButton.style.transform = `translate(${currentX}px, ${currentY}px) scale(1)`;
+    imageBañoButton.style.transform = `translate(${currentX}px, ${currentY}px) scale(1)`;
+    imageDormitorioButton.style.transform = `translate(${currentX}px, ${currentY}px) scale(1)`;
+    imageCocinaComedorButton.style.transform = `translate(${currentX}px, ${currentY}px) scale(1)`;
+});
+
+//Eventos para arrastrar con el mouse
 zoomContainer.addEventListener('mousedown', function (e) {
     e.preventDefault(); // Prevenir selección de texto o comportamiento nativo
     isDragging = true;
@@ -173,6 +215,7 @@ window.addEventListener('mousemove', function (e) {
     currentX = Math.max(-maxX, Math.min(nextX, maxX));
     currentY = Math.max(-maxY, Math.min(nextY, maxY));
 
+  
     // Aplica la traducción manteniendo el zoom
     zoomableImage.style.transform = `translate(${currentX}px, ${currentY}px) scale(2)`; 
     imageButton.style.transform = `translate(${currentX}px, ${currentY}px) scale(1)`;
@@ -181,7 +224,7 @@ window.addEventListener('mousemove', function (e) {
     imageCocinaComedorButton.style.transform = `translate(${currentX}px, ${currentY}px) scale(1)`;
 
     // Verificar si los botones están dentro del área visible
-    [imageButton, imageBañoButton, imageDormitorioButton, imageCocinaComedorButton].forEach(button => {
+    /* [imageButton, imageBañoButton, imageDormitorioButton, imageCocinaComedorButton].forEach(button => {
         const buttonRect = button.getBoundingClientRect();
         if (
             buttonRect.right > containerRect.left &&
@@ -195,7 +238,10 @@ window.addEventListener('mousemove', function (e) {
             button.classList.add('hidden-button');
             button.classList.remove('visible-button');
         }
-    });
+    }); */
+
+
+    
 });
 
 

@@ -117,14 +117,14 @@
     cursor: grabbing;
 }
 
-.hidden-button {
-    visibility: hidden; /* Para ocultar cuando están fuera de la vista */
+/* .hidden-button {
+    visibility: hidden; 
 }
 
 .visible-button {
     visibility: visible;
 }
-
+ */
 .popup {
     display: flex;
     justify-content: center;
@@ -678,4 +678,26 @@ footer {
         /* box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); */
     }
   }
+
+
+  @media (max-width: 768px) {
+    .popup {
+        align-items: flex-start; /* Alinear hacia arriba en pantallas pequeñas */
+        padding-top: 20px; /* Espacio en la parte superior */
+
+        width: 25rem;
+    }
+
+    .popup-content {
+        max-width: 95%; /* Ajustar el tamaño máximo de la ventana emergente */
+        max-height: 80%; /* Reducir la altura máxima en pantallas pequeñas */
+        border-radius: 4px; /* Reducir el borde redondeado en pantallas pequeñas */
+    }
+
+    .close-popup {
+        top: 5px; /* Ajustar el espacio superior en pantallas pequeñas */
+        right: 10px; /* Ajustar la posición de la "X" */
+        font-size: 24px; /* Reducir el tamaño de la "X" en pantallas pequeñas */
+    }
+}
 
