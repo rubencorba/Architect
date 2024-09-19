@@ -587,52 +587,6 @@ footer {
     padding: 20px;
 }
 
-/* Adaptable (responsivo) */
-
-/* @media screen and (max-width: 767px) {
-    .navbar-brand {
-        display: none;
-    }
-} */
-
-@media screen and (min-width: 700px) {
-    .hero-inferior-imagen {
-        max-width: 600px;
-    }
-}
-
-@media screen and (max-width: 700px) {
-    .card-profesor {
-        width: 16rem;
-    }
-}
-
-@media screen and (max-width: 400px) {
-    .overlay p {
-        font-size: 18px;
-    }
-    .overlay i {
-        font-size: 40px;
-    }
-}
-
-@media screen and (max-width: 800px) {
-    .testimonio-imagen {
-        height: 120px;
-        width: 120px;
-    }
-    
-    .testimonio-texto {
-        font-size: 18px;
-    }
-}
-
-@media (max-width: 768px) {
-    .carousel-item {
-      width: 22rem; /* Cambia el ancho a 100% para pantallas más pequeñas */
-    }
-  }
-
 
 
 
